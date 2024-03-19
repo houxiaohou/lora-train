@@ -9,6 +9,10 @@ MODEL_ID = 'Salesforce/blip-image-captioning-large'
 DATA_PATH = './dataset/dazhi'
 META_PATH = './dataset/dazhi/metadata.jsonl'
 
+dataset = load_dataset("./dataset/dazhi")
+
+print(dataset[0]['text'])
+
 print('start model load...')
 
 processor = BlipProcessor.from_pretrained(MODEL_ID, cache_dir='/workspace/model')
