@@ -11,6 +11,8 @@ model = BlipForConditionalGeneration.from_pretrained(
     cache_dir='/workspace/model'
 ).to("cuda")
 
+print('model loaded....')
+
 for i in range(1, 8):
     raw_image = Image.open(f'./dataset/dazhi/{i}.jpg').convert('RGB')
     inputs = processor(raw_image, 'a photography of', return_tensors="pt").to("cuda", torch.float16)
