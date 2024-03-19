@@ -4,10 +4,11 @@ from transformers import BlipProcessor, BlipForConditionalGeneration
 
 MODEL_ID = 'Salesforce/blip-image-captioning-large'
 
-processor = BlipProcessor.from_pretrained(MODEL_ID)
+processor = BlipProcessor.from_pretrained(MODEL_ID, cache_dir='/workspace/model')
 model = BlipForConditionalGeneration.from_pretrained(
     MODEL_ID,
-    torch_dtype=torch.float16
+    torch_dtype=torch.float16,
+    cache_dir='/workspace/model'
 ).to("cuda")
 
 for i in range(1, 8):
