@@ -9,7 +9,7 @@ MODEL_ID = 'Salesforce/blip-image-captioning-large'
 DATA_PATH = './dataset/dazhi'
 META_PATH = './dataset/dazhi/metadata.jsonl'
 
-dataset = load_dataset('imagefolder', './dataset')
+dataset = load_dataset('imagefolder', './dataset/dazhi')
 print(dataset)
 print(dataset[0])
 print(dataset[0]['text'])
