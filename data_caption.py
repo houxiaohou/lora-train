@@ -1,0 +1,17 @@
+import torch
+from PIL import Image
+from transformers import BlipProcessor, BlipForConditionalGeneration
+
+MODEL_ID = 'Salesforce/blip-image-captioning-large'
+
+processor = BlipProcessor.from_pretrained(MODEL_ID)
+model = BlipForConditionalGeneration.from_pretrained(
+    MODEL_ID,
+    torch_dtype=torch.float16
+).to("cuda")
+
+for i in range(1, 8):
+    raw_image = Image.open(f'./dataset/dazhi/{i}.jpg').convert('RGB')
+    inputs = processor(raw_image, return_tensors="pt").to("cuda", torch.float16)
+    out = model.generate(**inputs, num_beams=4, max_new_tokens=200, generate_kwargs={"min_length": 40})
+    print(processor.decode(out[0], skip_special_tokens=True))
