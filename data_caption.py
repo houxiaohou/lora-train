@@ -13,6 +13,6 @@ model = BlipForConditionalGeneration.from_pretrained(
 
 for i in range(1, 8):
     raw_image = Image.open(f'./dataset/dazhi/{i}.jpg').convert('RGB')
-    inputs = processor(raw_image, return_tensors="pt").to("cuda", torch.float16)
+    inputs = processor(raw_image, 'a photography of', return_tensors="pt").to("cuda", torch.float16)
     out = model.generate(**inputs, num_beams=4, max_length=256, min_length=24)
     print(processor.decode(out[0], skip_special_tokens=True))
