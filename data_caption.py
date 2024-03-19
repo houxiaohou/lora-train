@@ -28,7 +28,7 @@ with open(META_PATH, 'w') as outfile:
         inputs = processor(raw_image, 'a photography of', return_tensors="pt").to("cuda", torch.float16)
         out = model.generate(**inputs, num_beams=4, max_length=256, min_length=24)
         caption = processor.decode(out[0], skip_special_tokens=True)
-        caption = caption.replace('a photography of', 'a TOK cat, ')
+        caption = caption.replace('a photography of', 'photo of a TOK cat')
         print(caption)
         result = {'file_name': f'{i}.jpg', 'text': caption}
         json.dump(result, outfile)
