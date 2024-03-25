@@ -6,13 +6,13 @@ import torch
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
-MODEL_ID = 'Salesforce/blip-image-captioning-large'
+MODEL_PATH = '/home/models/blip-image-captioning-large'
 
-processor = BlipProcessor.from_pretrained(MODEL_ID, cache_dir='/workspace/model')
+processor = BlipProcessor.from_pretrained(MODEL_PATH, local_files_only=True)
 model = BlipForConditionalGeneration.from_pretrained(
-    MODEL_ID,
+    MODEL_PATH,
     torch_dtype=torch.float16,
-    cache_dir='/home/model'
+    local_files_only=True
 ).to("cuda")
 
 
