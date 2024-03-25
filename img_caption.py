@@ -12,7 +12,7 @@ processor = BlipProcessor.from_pretrained(MODEL_ID, cache_dir='/workspace/model'
 model = BlipForConditionalGeneration.from_pretrained(
     MODEL_ID,
     torch_dtype=torch.float16,
-    cache_dir='/workspace/model'
+    cache_dir='/home/model'
 ).to("cuda")
 
 
