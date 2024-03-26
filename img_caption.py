@@ -43,4 +43,4 @@ def do_caption(folder):
     outfile.close()
 
 
-do_caption('yuan')
+do_caption('dazhi')
